@@ -20,8 +20,8 @@ const useStyles = makeStyles((theme) => ({
     '& .MuiFormLabel-root': {
       color: '#a3a3a3',
       fontFamily: 'Avenir',
-      marginLeft: '5px',
-      textAlign: 'center',
+      marginLeft: '10px',
+      marginTop: '5px',
       textTransform: 'uppercase',
       fontSize: '16px',
       fontWeight: '500'
@@ -29,8 +29,8 @@ const useStyles = makeStyles((theme) => ({
     '& .MuiFormHelperText-root': {
       color: '#a3a3a3',
       fontFamily: 'Avenir',
-      marginLeft: '5px',
-      fontSize: '14px'
+      marginLeft: '10px',
+      fontSize: '12px'
     }
   },
   button: {
@@ -39,6 +39,8 @@ const useStyles = makeStyles((theme) => ({
     fontWeight: '600'
   },
   multilineColor: {
+    width: '98%',
+    alignSelf: 'center',
     color: 'white',
     fontFamily: 'Avenir',
     fontSize: '14px'
@@ -114,7 +116,8 @@ function App () {
 
   function handleSubmit (event) {
     event.preventDefault();
-    if (text.length < 5) {
+    if (text.length < 50) {
+      alert('ERROR: Input text must be atleast 50 characters.')
       return;
     }
     callAnalysisService(text);
@@ -157,11 +160,10 @@ function App () {
           />
           <p>
             <Button
-              className="input_submit"
+              className={classes.button}
               type="submit"
               variant="contained"
               color="secondary"
-              className={classes.button}
               endIcon={<Icon>Analyse</Icon>}>
               Analyse
             </Button>

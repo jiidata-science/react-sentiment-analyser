@@ -92,20 +92,18 @@ const OtherRadio = withStyles({
 
 function Item ({ element, handleExpansion, expanded, handleItemDelete }) {
 
+  /* WORD LISTS TO HIGHLIGHT IN THE UI */
   const [ nouns, setNouns ] = useState(null);
   const [ verbs, setVerbs ] = useState(null);
   const [ adj, setAdjectives ] = useState(null);
-
   const [ posEntities, setPos ] = useState(null);
   const [ negEntities, setNeg ] = useState(null);
 
-  const [ text, setText ] = useState(null);
-  const [ textShort, setTextShort ] = useState(null);
-
+  const [ text, setText ] = useState(null); /* full text to display inside item on expansion */
+  const [ textShort, setTextShort ] = useState(null); /* to display as short title per item */
   const [ filterWords, setFilterWords ] = useState('default_none');
   const [ highlighter, sethighlighter ] = useState('');
-
-  const [ filterWordsDefault, setDefault ] = useState([ 'default_none' ]);
+  const filterWordsDefault = [ 'default_none' ];
 
   useEffect(() => {
     setNouns(element.partOfSpeech.NOUN);
@@ -116,32 +114,41 @@ function Item ({ element, handleExpansion, expanded, handleItemDelete }) {
     setText(element.text);
     setTextShort(element.text.split(' ').slice(0, 5).join(' ') + '...');
     setFilterWords(filterWordsDefault);
-    sethighlighter('none')
+    sethighlighter('none');
   }, []);
 
   function handlePOSSelection ({ target }) {
-    if (target.value === "NOUNS") {
-      setFilterWords(nouns);
-      sethighlighter('nouns');
-    } else if (target.value === "VERBS") {
-      setFilterWords(verbs);
-      sethighlighter('verbs')
-    } else if (target.value === "ADJ") {
-      setFilterWords(adj);
-      sethighlighter('adj')
-    } else if (target.value === "NONE") {
-      setFilterWords(filterWordsDefault);
-      sethighlighter('none')
-    } else if (target.value === "POSITIVE") {
-      setFilterWords(posEntities);
-      sethighlighter('pos')
-    } else if (target.value === "NEGATIVE") {
-      setFilterWords(negEntities);
-      sethighlighter('neg')
+    switch (target.value) {
+      case "NOUNS":
+        setFilterWords(nouns);
+        sethighlighter('nouns');
+        break;
+      case "VERBS":
+        setFilterWords(verbs);
+        sethighlighter('verbs');
+        break;
+      case "ADJ":
+        setFilterWords(adj);
+        sethighlighter('adj');
+        break;
+      case "NONE":
+        setFilterWords(filterWordsDefault);
+        sethighlighter('none');
+        break;
+      case "POSITIVE":
+        setFilterWords(posEntities);
+        sethighlighter('pos');
+        break;
+      case "NEGATIVE":
+        setFilterWords(negEntities);
+        sethighlighter('neg');
+        break;
+      default:
+        setFilterWords(filterWordsDefault);
+        sethighlighter('none');
+        break;
     }
-    return;
   }
-
 
   const classes = useStyles();
 
@@ -153,13 +160,17 @@ function Item ({ element, handleExpansion, expanded, handleItemDelete }) {
           expandIcon={<ExpandMoreIcon className={classes.svgDropdown} />}
           aria-controls="panel1bh-content"
           id="panel1bh-header">
-          <Typography className={classes.heading}>{textShort}</Typography>
-          <Typography className={classes.secondaryHeading}>Sentiment score: {element.docSentiment.score} | Magnitude: {element.docSentiment.magnitude}</Typography>
-
+          <Typography
+            className={classes.heading}>
+            {textShort}
+          </Typography>
+          <Typography
+            className={classes.secondaryHeading}>
+            Sentiment score: {element.docSentiment.score} | Magnitude: {element.docSentiment.magnitude}
+          </Typography>
         </ExpansionPanelSummary>
         <ExpansionPanelDetails className={classes.dropdown}>
           <Typography>
-
             {(text !== null) ?
               <Highlighter
                 highlightClassName={highlighter}
@@ -176,10 +187,7 @@ function Item ({ element, handleExpansion, expanded, handleItemDelete }) {
             }
 
           </Typography>
-
-
           <div className="interactive_buttons">
-
             <FormControl component="fieldset">
               <RadioGroup row aria-label="pos" name="pos1" onChange={handlePOSSelection}>
                 <label>
@@ -208,12 +216,10 @@ function Item ({ element, handleExpansion, expanded, handleItemDelete }) {
                 </label>
               </RadioGroup>
             </FormControl>
-
             <IconButton aria-label="delete" onClick={() => handleItemDelete(element.timeKey)}>
               <DeleteIcon />
             </IconButton>
           </div>
-
         </ExpansionPanelDetails>
       </ExpansionPanel>
     </div>
