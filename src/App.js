@@ -116,7 +116,9 @@ function App () {
 
   function handleSubmit (event) {
     event.preventDefault();
-    if (text.length < 50) {
+    if (text.length < 10) {
+      return;
+    } else if (text.length < 50) {
       alert('ERROR: Input text must be atleast 50 characters.')
       return;
     }
@@ -135,8 +137,6 @@ function App () {
 
   const classes = useStyles();
 
-
-
   return (
     <div className="app">
 
@@ -151,7 +151,6 @@ function App () {
             name="input_text"
             value={text}
             onChange={handleChange}
-            autoFocus={true}
             helperText="Type or copy a paragraph of text above and press the analyse button."
             InputProps={{
               className: classes.multilineColor
