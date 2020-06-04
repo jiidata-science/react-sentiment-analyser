@@ -1,7 +1,7 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 
-<img src="./images/react-app-setiment-analyser.gif" width="40" height="40" />
+<img src="./images/react-app-setiment-analyser.gif" width="600" height="600" />
 
 ## Available Scripts
 
