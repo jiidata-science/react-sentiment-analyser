@@ -1,0 +1,19 @@
+* {
+  font-family: 'Avenir';
+}
+
+body {
+  background-color: rgb(54, 54, 54);
+  color: #ffffff;
+}
+
+.app_inputs {
+  margin-top: 30px;
+}
+
+.app_inputs, .analysed_list {
+  width: 60%;
+  min-width: 300px;
+  margin: 0 auto;
+  margin-top: 30px;
+}
