@@ -9,14 +9,20 @@
 <img src="./images/react-app-setiment-analyser.gif" width="800" height="600" />
 </p>
 
-## Available Scripts
+## Pre-reqs & Dependencies
 
-In the project directory, you can run:
-
-### Install dependencies : `npm i` or `npm install`
+### Install node/react libraries : `npm i` or `npm install`
 - Executes installation of all dependencies listed in the package.json file.
 - On running this command, in the root folder, a `node_modules` directory will be created and all depdencies will be downloaded and installed within.
 
+### Create Google NLP API Key : [Quickstart Guide](https://cloud.google.com/natural-language/docs/setup)
+- Once you have created an API Key on Google Cloud, create a `.env` file in the root directory and add the following:
+``` bash
+REACT_APP_GOOGLE_API_KEY=<Google API Key>
+```
+
+## Launch app
+In the project directory, you can run:
 ### Run the app in your browser : `npm start`
 - Runs the app in the development mode.
 - Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
