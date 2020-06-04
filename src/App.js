@@ -169,7 +169,9 @@ function App () {
           </p>
         </form>
       </div>
-      <AnalysedList analysis={analysis} handleItemDelete={handleItemDelete} />
+      <AnalysedList
+        analysis={analysis}
+        handleItemDelete={handleItemDelete} />
     </div>
   );
 }
